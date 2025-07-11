@@ -35,13 +35,28 @@ app.get('/recipes', (req, res) => {
 app.post('/shopping-list', (req, res) => {
   const selectedRecipes = req.body.selectedRecipes;
   loadRecipes((recipes) => {
-    const ingredientSet = new Set();
+    const ingredientMap = new Map();
+
     recipes.forEach(({ name, ingredients }) => {
       if (selectedRecipes.includes(name)) {
-        ingredients.forEach((ing) => ingredientSet.add(ing));
+        ingredients.forEach((raw) => {
+          const match = raw.match(/^(.*?)(?:\s*x(\d+))?$/i);
+          const item = match[1].trim().toLowerCase();
+          const qty = match[2] ? parseInt(match[2], 10) : 1;
+
+          if (ingredientMap.has(item)) {
+            ingredientMap.set(item, ingredientMap.get(item) + qty);
+          } else {
+            ingredientMap.set(item, qty);
+          }
+        });
       }
     });
-    const sortedList = Array.from(ingredientSet).sort();
+
+    const sortedList = Array.from(ingredientMap.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([item, qty]) => `${item} x${qty}`);
+
     res.json({ shoppingList: sortedList });
   });
 });
