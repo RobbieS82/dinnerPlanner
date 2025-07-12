@@ -21,7 +21,7 @@
     .selection-column {
       padding: 10px;
       background-color: darkslategray;
-      color: white;            
+      color: white;
     }
 
     #recipe-list {
@@ -48,6 +48,16 @@
       cursor: pointer;
       font-size: larger;
     }
+
+    small {
+      display: block;
+      margin-top: 10px;            
+    }
+
+    small a {
+      color: /* darker relative to darkslategray */ #b0c4de;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -56,6 +66,8 @@
     <form id="recipe-form">
       <div id="recipe-list"></div>      
       <button id="submitbtn" type="submit">Get Shopping List</button>
+      <!-- add a link to the github repo -->
+      <small><a href="https://github.com/RobbieS82/dinnerPlanner">DinnerPlanner by Simpl</a></small>      
     </form>
   </div>
 
