@@ -46,3 +46,7 @@ The app will run, and you only have to open this link to view and use it: http:/
 
 To add meal plans, you only have to edit the CSV file found in ./data/recipes.csv. The first 
 column is the nickname of the meal, and all other columns are the ingredients to add to the shopping list.
+
+### Ingredient quantities
+If you need to specify an ingredient quantity, e.g. "six yellow onions", write it as "Yellow onion x6".  
+This will ensure the ingredient aggregation works properly.
