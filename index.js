@@ -34,11 +34,13 @@ app.get('/recipes', (req, res) => {
 
 app.post('/shopping-list', (req, res) => {
   const selectedRecipes = req.body.selectedRecipes;
-  loadRecipes((recipes) => {
+  loadRecipes(recipes => {
     const ingredientMap = new Map();
+    const selectedMeals = [];
 
     recipes.forEach(({ name, ingredients }) => {
       if (selectedRecipes.includes(name)) {
+        selectedMeals.push(name); // Collect selected meal names
         ingredients.forEach((raw) => {
           const match = raw.match(/^(.*?)(?:\s*x(\d+))?$/i);
           const item = match[1].trim().toLowerCase();
@@ -57,9 +59,13 @@ app.post('/shopping-list', (req, res) => {
       .sort((a, b) => a[0].localeCompare(b[0]))
       .map(([item, qty]) => `${item} x${qty}`);
 
-    res.json({ shoppingList: sortedList });
+    res.json({
+      selectedMeals: selectedMeals.sort(), // Alphabetical list of meals
+      shoppingList: sortedList
+    });
   });
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

@@ -3,15 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <title>Recipe Selector</title>
+  <style>
+    html * {
+      box-sizing: border-box;    
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      display: grid;
+      grid-template-columns: 25% 1fr;
+      gap: 10px;
+      padding:0;
+      margin:0;
+      height: 100vh;
+    }
+
+    .selection-column {
+      padding: 10px;
+      background-color: darkslategray;
+      color: white;            
+    }
+
+    #recipe-list {
+      max-height: 80vh;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    #recipe-list label {
+      display: block;
+      cursor: pointer;
+    }
+    
+    .attention-grabber {
+      color: #d9534f;
+      font-weight: bold;
+    }
+
+    #submitbtn {
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: larger;
+    }
+  </style>
 </head>
 <body>
-  <h1>Select Recipes</h1>
-  <form id="recipe-form">
-    <div id="recipe-list"></div>
-    <button type="submit">Get Shopping List</button>
-  </form>
-  <h2>Shopping List</h2>
-  <ul id="shopping-list"></ul>
+  <div class="selection-column">  
+    <h1>Select Meals</h1>
+    <form id="recipe-form">
+      <div id="recipe-list"></div>      
+      <button id="submitbtn" type="submit">Get Shopping List</button>
+    </form>
+  </div>
+
+  <div class="shopping-list-column">
+    <h2>Meal Plan</h2>    
+    <ul id="meal-list"></ul>
+
+    <h2>Shopping List</h2>
+    <ul id="shopping-list"></ul>
+
+    <p class="attention-grabber">Check the recipes you want to include in your shopping list, then click "Get Shopping List".</p>
+  </div>
 
   <script>
     async function loadRecipes() {
@@ -27,8 +83,20 @@
       });
     }
 
-    document.getElementById('recipe-form').addEventListener('submit', async (e) => {
+    document.getElementById('recipe-form').addEventListener('submit', async (e) => {     
       e.preventDefault();
+
+      // Prevent multiple clicks on the button
+      const button = e.target.querySelector('button');  
+      button.disabled = true;
+      button.textContent = 'Processing...';
+
+      // hide the attention grabber after the first click
+      const attentionGrabber = document.querySelector('.attention-grabber'); 
+      if (attentionGrabber) {
+        attentionGrabber.style.display = 'none';
+      }
+
       const checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
         .map(input => input.value);
 
@@ -46,6 +114,17 @@
         li.textContent = item;
         list.appendChild(li);
       });
+      const meals = document.getElementById('meal-list');
+      meals.innerHTML = '';
+      data.selectedMeals.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        meals.appendChild(li);
+      });
+
+      // Re-enable the button after processing
+      button.disabled = false;  
+      button.textContent = 'Get Shopping List';
     });
 
     loadRecipes();
