@@ -5,9 +5,9 @@
   <title>Recipe Selector</title>
   <style>
     html * {
-      box-sizing: border-box;    
+      box-sizing: border-box;
     }
-    
+
     body {
       font-family: Arial, sans-serif;
       display: grid;
@@ -34,7 +34,7 @@
       display: block;
       cursor: pointer;
     }
-    
+
     .attention-grabber {
       color: #d9534f;
       font-weight: bold;
@@ -51,7 +51,7 @@
 
     small {
       display: block;
-      margin-top: 10px;            
+      margin-top: 10px;
     }
 
     small a {
@@ -61,18 +61,18 @@
   </style>
 </head>
 <body>
-  <div class="selection-column">  
+  <div class="selection-column">
     <h1>Select Meals</h1>
     <form id="recipe-form">
-      <div id="recipe-list"></div>      
+      <div id="recipe-list"></div>
       <button id="submitbtn" type="submit">Get Shopping List</button>
       <!-- add a link to the github repo -->
-      <small><a href="https://github.com/RobbieS82/dinnerPlanner">DinnerPlanner by Simpl</a></small>      
+      <small><a href="https://github.com/RobbieS82/dinnerPlanner">DinnerPlanner by Simpl</a></small>
     </form>
   </div>
 
   <div class="shopping-list-column">
-    <h2>Meal Plan</h2>    
+    <h2>Meal Plan</h2>
     <ul id="meal-list"></ul>
 
     <h2>Shopping List</h2>
@@ -85,7 +85,7 @@
     async function loadRecipes() {
       const res = await fetch('/recipes');
       const data = await res.json();
-      const container = document.getElementById('recipe-list');
+      const container = getRecipeList();
 
       data.recipes.forEach(recipe => {
         const label = document.createElement('label');
@@ -95,22 +95,81 @@
       });
     }
 
-    document.getElementById('recipe-form').addEventListener('submit', async (e) => {     
+    function toggleAttentionGrabber(state="block"){
+      const attentionGrabber = document.querySelector('.attention-grabber');
+      if (attentionGrabber) {
+        attentionGrabber.style.display = state;
+      }
+    }
+
+    function getMealsList(){
+      return document.querySelector("#meal-list");
+    }
+
+    function getIngList(){
+      return document.querySelector("#shopping-list");
+    }
+
+    function getRecipeList(){
+      return document.querySelector("#recipe-list");
+    }
+
+    function checkCachedMeals(meals){
+      if(!Array.isArray(meals)){
+        return;
+      }
+
+      meals.forEach(meal => {
+        let chkbox = document.querySelector(`input[value="${meal}"]`);
+        if(chkbox){
+          chkbox.checked=true
+        };
+      });
+    }
+
+    function listCachedMeals(meals){
+      if(!Array.isArray(meals)){
+        return;
+      }
+
+      const list = getMealsList();
+
+      meals.forEach(meal => {
+        let listItem = document.createElement("LI");
+        listItem.textContent = meal;
+        list.appendChild(listItem);
+      });
+    }
+
+    function listCachedIngredients(ings){
+      if(!Array.isArray(ings)){
+        return;
+      }
+
+      const list = getIngList();
+
+      ings.forEach(i => {
+        let listItem = document.createElement("LI");
+        listItem.textContent = i;
+        list.appendChild(listItem);
+      });
+    }
+
+    document.getElementById('recipe-form').addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Prevent multiple clicks on the button
-      const button = e.target.querySelector('button');  
+      const button = e.target.querySelector('button');
       button.disabled = true;
       button.textContent = 'Processing...';
 
       // hide the attention grabber after the first click
-      const attentionGrabber = document.querySelector('.attention-grabber'); 
-      if (attentionGrabber) {
-        attentionGrabber.style.display = 'none';
-      }
+      toggleAttentionGrabber("none");
 
       const checked = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
         .map(input => input.value);
+
+      localStorage.setItem("lastMealsSelected", JSON.stringify(checked));
 
       const res = await fetch('/shopping-list', {
         method: 'POST',
@@ -126,6 +185,9 @@
         li.textContent = item;
         list.appendChild(li);
       });
+
+      localStorage.setItem("shoppingList", JSON.stringify(data.shoppingList));
+
       const meals = document.getElementById('meal-list');
       meals.innerHTML = '';
       data.selectedMeals.forEach(item => {
@@ -135,11 +197,20 @@
       });
 
       // Re-enable the button after processing
-      button.disabled = false;  
+      button.disabled = false;
       button.textContent = 'Get Shopping List';
     });
 
-    loadRecipes();
+    loadRecipes().then(() => {
+      const cachedMeals = JSON.parse(localStorage.getItem("lastMealsSelected")) ?? null;
+      const cachedShoppingList = JSON.parse(localStorage.getItem("shoppingList")) ?? null;
+      if(cachedMeals && cachedShoppingList){
+        toggleAttentionGrabber("none");
+      }
+      checkCachedMeals(cachedMeals);
+      listCachedMeals(cachedMeals);
+      listCachedIngredients(cachedShoppingList);
+    });
   </script>
 </body>
 </html>
