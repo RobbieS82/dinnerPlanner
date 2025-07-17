@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Recipe Selector</title>
   <style>
     html * {
@@ -16,6 +18,7 @@
       padding:0;
       margin:0;
       height: 100vh;
+      overflow: hidden;
     }
 
     .selection-column {
@@ -58,6 +61,27 @@
       color: /* darker relative to darkslategray */ #b0c4de;
       text-decoration: none;
     }
+
+  dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 1.5em;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    max-width: 400px;
+    margin: auto;
+  }
+  dialog::backdrop {
+    background: rgba(0,0,0,0.8);
+  }
+
+  progress {
+    width: 100%;
+    height: 6px;
+    margin-top: 0.5em;
+    appearance: none;
+  }
+
+
   </style>
 </head>
 <body>
@@ -77,9 +101,17 @@
 
     <h2>Shopping List</h2>
     <ul id="shopping-list"></ul>
-
     <p class="attention-grabber">Check the recipes you want to include in your shopping list, then click "Get Shopping List".</p>
   </div>
+
+  <dialog id="resumeDialog">
+    <h3>Picking up where you last left off!</h3>
+    <p>We've restored your selections from last time you were here.</p>
+    <button type="button" id="closeDialogBtn">
+      Okay
+    </button>
+    <progress id="resumeProgress" value="0" max="100"></progress>
+  </dialog>
 
   <script>
     async function loadRecipes() {
@@ -95,11 +127,42 @@
       });
     }
 
+  function showResumeDialog() {
+    const dialog = getResumeModal();
+    const progress = dialog.querySelector("#resumeProgress");
+    const closeBtn = dialog.querySelector("#closeDialogBtn");
+
+    dialog.showModal();
+
+    let duration = 2000; // seconds
+    let interval = 50; // update every 100ms
+    let elapsed = 0;
+
+    const timer = setInterval(() => {
+      elapsed += interval;
+      progress.value = (elapsed / duration) * 100;
+
+      if (elapsed >= duration) {
+        clearInterval(timer);
+        dialog.close();
+      }
+    }, interval);
+
+    closeBtn.addEventListener("click", () => {
+      clearInterval(timer);
+      dialog.close();
+    });
+  }
+
     function toggleAttentionGrabber(state="block"){
       const attentionGrabber = document.querySelector('.attention-grabber');
       if (attentionGrabber) {
         attentionGrabber.style.display = state;
       }
+    }
+
+    function getResumeModal(){
+      return document.querySelector("#resumeDialog");
     }
 
     function getMealsList(){
@@ -155,7 +218,7 @@
       });
     }
 
-    document.getElementById('recipe-form').addEventListener('submit', async (e) => {
+    document.querySelector("#recipe-form").addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Prevent multiple clicks on the button
@@ -206,10 +269,15 @@
       const cachedShoppingList = JSON.parse(localStorage.getItem("shoppingList")) ?? null;
       if(cachedMeals && cachedShoppingList){
         toggleAttentionGrabber("none");
+        showResumeDialog();
       }
       checkCachedMeals(cachedMeals);
       listCachedMeals(cachedMeals);
       listCachedIngredients(cachedShoppingList);
+    });
+
+    document.getElementById("closeDialogBtn").addEventListener("click", () => {
+      getResumeModal().close();
     });
   </script>
 </body>
