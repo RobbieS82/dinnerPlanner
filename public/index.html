@@ -119,7 +119,7 @@
       const data = await res.json();
       const container = getRecipeList();
 
-      data.recipes.forEach(recipe => {
+      data.forEach(recipe => {
         const label = document.createElement('label');
         label.innerHTML = `<input type="checkbox" value="${recipe.name}" /> ${recipe.name}`;
         container.appendChild(label);

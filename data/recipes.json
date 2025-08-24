@@ -1,0 +1,746 @@
+[
+	{
+		"name": "Broccoli alfredo",
+		"ingredients": [
+				"Broccoli",
+				"Linguine",
+				"Heavy cream",
+				"Parmesan"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Artichoke Chicken",
+		"ingredients": [
+				"Chicken breast",
+				"Italian dressing",
+				"Smoked cheddar",
+				"Artichoke bottoms",
+				"Mayo",
+				"Garlic powder",
+				"Parmesan"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Baked potato bonanza",
+		"ingredients": [
+				"Sweet potato",
+				"Butter",
+				"Green beans"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Beef and arugula salad",
+		"ingredients": [
+				"Beef skewers",
+				"Greek oil",
+				"Ground beef",
+				"Arugula",
+				"Parmesan",
+				"Pears",
+				"Sliced almonds",
+				"Oil and vinegar dressing"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Beef tips over rice",
+		"ingredients": [
+				"Stew meat",
+				"Cream of mushroom",
+				"Brown gravy pack",
+				"Lipton onion soup pack",
+				"Mushrooms",
+				"Rice"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Black bean burgers",
+		"ingredients": [
+				"Egg",
+				"Chiles in adobo",
+				"Black beans",
+				"Scallion",
+				"Garlic",
+				"Worcheshire sauce",
+				"Feta crumbles",
+				"Smoked paprika",
+				"Pepperjack",
+				"Pretzel buns",
+				"southwest sauce",
+				"Fritos",
+				"Lettuce"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Blackened fish with roasted veggies",
+		"ingredients": [
+				"Fish filets",
+				"Butter",
+				"Yellow squash",
+				"Zucchini",
+				"Yellow onion",
+				"Blackening seasoning"
+		],
+		"tags": [
+			"P"
+		],
+		"source": ""
+	},
+	{
+		"name": "Breakfast for dinner",
+		"ingredients": [
+				"Eggs",
+				"Sausage",
+				"Pancake mix",
+				"Tortilla"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Broccoli/Rice/Cheese Casserole",
+		"ingredients": [
+				"Chicken thighs",
+				"Broccoli",
+				"Rice",
+				"Melty cheese"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Buffalo cauliflower casserole",
+		"ingredients": [
+				"Cauliflower (Frozen)",
+				"Cheddar cheese",
+				"Gouda cheese",
+				"Buffalo sauce",
+				"Mayo",
+				"Paprika",
+				"Scallion",
+				"Bacon bits"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Burrito bowl",
+		"ingredients": [
+				"Shredded cheese",
+				"Shredded lettuce",
+				"Cherry tomato",
+				"Red onion",
+				"Lime",
+				"Sour cream",
+				"Guacamole",
+				"Jalepeno",
+				"Black beans",
+				"Corn"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Cabbage/sausage/cornbread",
+		"ingredients": [
+				"Cabbage",
+				"Sausage",
+				"Egg",
+				"Cornbread mix"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Chicken parmesan",
+		"ingredients": [
+				"Crushed tomato",
+				"Basil",
+				"Mozzarella (low moisture)",
+				"Chicken breast",
+				"Spaghetti"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Chicken pot pie",
+		"ingredients": [
+				"Peas and carrots",
+				"Chicken thighs",
+				"Pie crusts",
+				"Corn starch",
+				"Yellow onion",
+				"Garlic"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Chili",
+		"ingredients": [
+				"Ground beef",
+				"Bacon bits",
+				"Pinto beans",
+				"Black beans",
+				"Yellow onion",
+				"Garlic powder",
+				"Crushed tomato",
+				"Poblano pepper",
+				"Cheddar cheese",
+				"Cornbread mix",
+				"Cinnamon",
+				"Cumin",
+				"Sour cream",
+				"Chiles in adobo"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Corn casserole",
+		"ingredients": [
+				"Corn",
+				"Poblano pepper",
+				"Sour cream",
+				"Rice",
+				"Monterey jack cheese",
+				"Chicken stock",
+				"Yellow onion"
+		],
+		"tags": ["V"],
+		"source": ""
+	},
+	{
+		"name": "Crab pasta",
+		"ingredients": [
+				"Crab meat",
+				"Spaghetti",
+				"Peas",
+				"Heavy cream",
+				"Butter",
+				"Dry white wine",
+				"Shallot",
+				"Lemon",
+				"Parsley"
+		],
+		"tags": ["P"],
+		"source": ""
+	},
+	{
+		"name": "Cream of asapargus soup",
+		"ingredients": [
+				"Vegetable stock",
+				"Shallot",
+				"Heavy cream",
+				"Asparagus",
+				"Cream of mushroom soup"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Enchiladas Verde",
+		"ingredients": [
+				"Chicken thighs",
+				"Corn tortilla",
+				"Pepper jack cheese",
+				"Queso cheese",
+				"Verde sauce",
+				"sour cream",
+				"Yellow onion",
+				"Jalepeno"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Falafel Sandwiches",
+		"ingredients": [
+				"Dried chickpea",
+				"Cherry tomato",
+				"tahini or tzatziki",
+				"Scallion",
+				"Parsley",
+				"Lemon",
+				"Garlic",
+				"Pita bread"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Fish tacos",
+		"ingredients": [
+				"Tilapia filets",
+				"Corn tortillas",
+				"cilantro",
+				"Rachero sauce",
+				"Limes",
+				"Leaf lettuce"
+		],
+		"tags": [
+			"P"
+		],
+		"source": ""
+	},
+	{
+		"name": "French onion soup",
+		"ingredients": [
+				"Yellow onion x6",
+				"Beef broth",
+				"Gruyere",
+				"Croutons",
+				"Crusty bread"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Fried rice",
+		"ingredients": [
+				"Rice",
+				"Scallions",
+				"Yellow onion",
+				"Egg",
+				"Sesame oil",
+				"Beef ramen packet",
+				"kimchi",
+				"tofu",
+				"bread crumbs"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Greek kofta bowl",
+		"ingredients": [
+				"Pita breads",
+				"Tzatziki sauce",
+				"Red onion",
+				"roma tomato x3",
+				"English cucumber",
+				"Chicken thighs",
+				"Mint",
+				"Cumin",
+				"Paprika",
+				"Chili powder"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Gumbo",
+		"ingredients": [
+				"Chicken thighs",
+				"Conecuh sausage",
+				"Okra",
+				"Yellow onion",
+				"Poblano pepper",
+				"Celery seed",
+				"Chicken stock",
+				"Rice"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Italian wedding soup",
+		"ingredients": [
+				"Chicken stock",
+				"Carrot",
+				"Celery",
+				"Yellow onion",
+				"Rice",
+				"Meatballs",
+				"Spinach",
+				"Garlic"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Keto casserole",
+		"ingredients": [
+				"Chicken thighs",
+				"Pesto",
+				"Heavy cream",
+				"Kalamata olives",
+				"Feta crumbles",
+				"Garlic powder",
+				"Spinach & Arugula mix"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Tostadas",
+		"ingredients": [
+				"Ground turkey",
+				"Ground pork",
+				"Taco seasoning",
+				"Corn tortillas",
+				"Salsa"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Mexican rice",
+		"ingredients": [
+				"Rice",
+				"Tomato sauce",
+				"Red bell pepper",
+				"Yellow onion",
+				"garlic",
+				"Monterey jack cheese",
+				"Pork ribs"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Pot Roast",
+		"ingredients": [
+				"Beef roast",
+				"Pepperoncini",
+				"Carrot",
+				"Yellow onion",
+				"Ranch packet",
+				"Au Jus packet",
+				"Garlic ",
+				"Butter",
+				"Quinoa"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Mufaletta",
+		"ingredients": [
+				"Olive tapenade",
+				"Ham",
+				"Salami",
+				"Pastrami",
+				"Provolone"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Olive Garden Salad",
+		"ingredients": [
+				"Salad mix",
+				"pepperoncini",
+				"Olive Garden dressing",
+				"Roma tomato x2",
+				"Parmesan"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Onion pasta",
+		"ingredients": [
+				"Yellow onion x5",
+				"Sundried tomatoes",
+				"Coconut milk",
+				"Garlic",
+				"Paprika",
+				"Parsley",
+				"Lemon juice",
+				"Farfalle",
+				"Spinach"
+		],
+		"tags": [
+				"V"
+		],
+		"source": "https://www.aholisticvibe.com/blog-recipes/creamy-tuscan-sun-dried-tomato-pasta"
+	},
+	{
+		"name": "Pesto pasta",
+		"ingredients": [
+				"Linguine",
+				"Pesto",
+				"Parmesan",
+				"Chicken breast (optional)"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Portabello & Quinoa",
+		"ingredients": [
+				"Portabellos",
+				"quinoa",
+				"garlic",
+				"zucchini",
+				"Cherry tomato",
+				"Pecorino"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Ratatouille",
+		"ingredients": [
+				"Eggplant",
+				"Zucchini",
+				"Squash",
+				"Tomato sauce",
+				"Red bell pepper",
+				"Yellow bell pepper",
+				"Garlic",
+				"Basil",
+				"thyme",
+				"Shrimp",
+				"French bread"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Red beans/Rice/Sausage",
+		"ingredients": [
+				"Bird's eye red beans",
+				"Rice",
+				"Conecuh sausage"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Rice and Sausage Casserole",
+		"ingredients": [
+				"Pork sausage",
+				"Wild rice",
+				"Sage",
+				"Yellow onion",
+				"Carrot",
+				"Celery seed",
+				"Mushroom"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Salmon/asparagus/spiced rice",
+		"ingredients": [
+				"Salmon filets",
+				"Asparagus",
+				"Spiced rice",
+				"Sunflower seeds",
+				"Plain yogurt",
+				"Dill (Fresh)",
+				"Lemon juice",
+				"Garlic"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Shrimp and Grits",
+		"ingredients": [
+				"Shrimp",
+				"Grits",
+				"Smoked gouda",
+				"Bacon bits",
+				"Heavy cream",
+				"Paprika",
+				"Spinach"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Shrimp scampi",
+		"ingredients": [
+				"Shrimp",
+				"Butter",
+				"Shallot",
+				"Linguine",
+				"Lemon juice",
+				"Parsley",
+				"Red pepper flake",
+				"zucchini"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Spaghetti",
+		"ingredients": [
+				"Tomato sauce",
+				"Spaghetti",
+				"Yellow onion",
+				"parmesan"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Steak & Onion Pies",
+		"ingredients": [
+				"Sirloin steak",
+				"Yellow onion",
+				"carrot",
+				"garlic",
+				"rosemary",
+				"thyme",
+				"puff pastry"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Stroganoff",
+		"ingredients": [
+				"Sirloin steak",
+				"Butter",
+				"Yellow onion",
+				"mushrooms",
+				"Brandy/Cognac",
+				"Beef stock",
+				"Bay leaf",
+				"Brown mustard",
+				"Parsley",
+				"Sour cream",
+				"Egg noodles"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Stuffed portabella mushroom",
+		"ingredients": [
+				"Mushroom caps",
+				"zucchini",
+				"shallot x2",
+				"Sliced ham",
+				"Green beans",
+				"Gruyere"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Tacos",
+		"ingredients": [
+				"Flour tortilla",
+				"Pico ingredients",
+				"Chicken thighs",
+				"Cheddar cheese",
+				"Red onion"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Take and bake pizza",
+		"ingredients": [
+				"A take and bake pizza"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Tikka masala",
+		"ingredients": [
+				"Canned chickpea x2",
+				"Tomato paste",
+				"Coconut milk",
+				"Yellow onion",
+				"Garlic",
+				"Ginger powder",
+				"Chili powder",
+				"Paprika",
+				"Cinnamon",
+				"Garam masala powder",
+				"Cumin",
+				"Cilantro",
+				"Cashews"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Tomata feta pasta",
+		"ingredients": [
+				"Cherry tomato",
+				"Feta",
+				"Farfalle",
+				"Baby spinach",
+				"Basil",
+				"Garlic",
+				"Oregano"
+		],
+		"tags": [
+				"V"
+		],
+		"source": ""
+	},
+	{
+		"name": "Tuna steaks",
+		"ingredients": [
+				"Tuna steaks",
+				"Shallot",
+				"Garlic",
+				"Wasabi paste",
+				"White wine vinegar",
+				"Sesame seeds",
+				"Little potatoes",
+				"butter"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Tuscan Chicken",
+		"ingredients": [
+				"Chicken breast",
+				"Spinach",
+				"Heavy Cream",
+				"Parmesan",
+				"Chicken stock",
+				"Sun-dried tomato",
+				"Garlic"
+		],
+		"tags": [],
+		"source": ""
+	}
+]
