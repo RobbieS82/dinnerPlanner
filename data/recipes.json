@@ -3,27 +3,13 @@
 		"name": "Broccoli alfredo",
 		"ingredients": [
 				"Broccoli",
-				"Linguine",
-				"Heavy cream",
+				"Rotini pasta",
+				"Milk",
 				"Parmesan"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
-		"source": ""
-	},
-	{
-		"name": "Artichoke Chicken",
-		"ingredients": [
-				"Chicken breast",
-				"Italian dressing",
-				"Smoked cheddar",
-				"Artichoke bottoms",
-				"Mayo",
-				"Garlic powder",
-				"Parmesan"
-		],
-		"tags": [],
 		"source": ""
 	},
 	{
@@ -34,14 +20,13 @@
 				"Green beans"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
 	{
-		"name": "Beef and arugula salad",
+		"name": "Keftes and arugula salad",
 		"ingredients": [
-				"Beef skewers",
 				"Greek oil",
 				"Ground beef",
 				"Arugula",
@@ -84,12 +69,12 @@
 				"Lettuce"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
 	{
-		"name": "Blackened fish with roasted veggies",
+		"name": "Blackened fish",
 		"ingredients": [
 				"Fish filets",
 				"Butter",
@@ -108,8 +93,7 @@
 		"ingredients": [
 				"Eggs",
 				"Sausage",
-				"Pancake mix",
-				"Tortilla"
+				"Pancake mix"
 		],
 		"tags": [],
 		"source": ""
@@ -138,7 +122,7 @@
 				"Bacon bits"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -157,7 +141,7 @@
 				"Corn"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -179,13 +163,15 @@
 				"Basil",
 				"Mozzarella (low moisture)",
 				"Chicken breast",
-				"Spaghetti"
+				"Spaghetti",
+				"Bread crumbs",
+				"Egg"
 		],
 		"tags": [],
 		"source": ""
 	},
 	{
-		"name": "Chicken pot pie",
+		"name": "Pot pie",
 		"ingredients": [
 				"Peas and carrots",
 				"Chicken thighs",
@@ -229,7 +215,7 @@
 				"Chicken stock",
 				"Yellow onion"
 		],
-		"tags": ["V"],
+		"tags": ["Veg"],
 		"source": ""
 	},
 	{
@@ -254,11 +240,10 @@
 				"Vegetable stock",
 				"Shallot",
 				"Heavy cream",
-				"Asparagus",
-				"Cream of mushroom soup"
+				"Asparagus"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -290,7 +275,7 @@
 				"Pita bread"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -335,7 +320,7 @@
 				"bread crumbs"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -345,7 +330,7 @@
 				"Pita breads",
 				"Tzatziki sauce",
 				"Red onion",
-				"roma tomato x3",
+				"Roma tomato x3",
 				"English cucumber",
 				"Chicken thighs",
 				"Mint",
@@ -464,7 +449,7 @@
 				"Parmesan"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -482,17 +467,16 @@
 				"Spinach"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": "https://www.aholisticvibe.com/blog-recipes/creamy-tuscan-sun-dried-tomato-pasta"
 	},
 	{
 		"name": "Pesto pasta",
 		"ingredients": [
-				"Linguine",
+				"Farfalle",
 				"Pesto",
-				"Parmesan",
-				"Chicken breast (optional)"
+				"Parmesan"
 		],
 		"tags": [],
 		"source": ""
@@ -502,13 +486,15 @@
 		"ingredients": [
 				"Portabellos",
 				"quinoa",
-				"garlic",
 				"zucchini",
 				"Cherry tomato",
-				"Pecorino"
+				"Pecorino",
+				"Mire poix",
+				"Spinach",
+				"Sliced ham"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -577,8 +563,7 @@
 				"Smoked gouda",
 				"Bacon bits",
 				"Heavy cream",
-				"Paprika",
-				"Spinach"
+				"Paprika"
 		],
 		"tags": [],
 		"source": ""
@@ -607,7 +592,7 @@
 				"parmesan"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -617,10 +602,11 @@
 				"Sirloin steak",
 				"Yellow onion",
 				"carrot",
+				"Celery seed",
 				"garlic",
 				"rosemary",
 				"thyme",
-				"puff pastry"
+				"Pie crust "
 		],
 		"tags": [],
 		"source": ""
@@ -661,7 +647,7 @@
 		"ingredients": [
 				"Flour tortilla",
 				"Pico ingredients",
-				"Chicken thighs",
+				"Ground meat",
 				"Cheddar cheese",
 				"Red onion"
 		],
@@ -694,7 +680,7 @@
 				"Cashews"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -710,7 +696,7 @@
 				"Oregano"
 		],
 		"tags": [
-				"V"
+				"Veg"
 		],
 		"source": ""
 	},
@@ -739,6 +725,34 @@
 				"Chicken stock",
 				"Sun-dried tomato",
 				"Garlic"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Chicken au gratin",
+		"ingredients": [
+				"Chicken quarters",
+				"Butter",
+				"Green beans",
+				"Cauliflower",
+				"Cheddar cheese",
+				"Milk",
+				"Garlic"
+		],
+		"tags": [
+				"Veg"
+		],
+		"source": ""
+	},
+	{
+		"name": "Charcuterie plate",
+		"ingredients": [
+				"Cheeses",
+				"Meats",
+				"Fruit",
+				"Crackers",
+				"Pickled vegetables"
 		],
 		"tags": [],
 		"source": ""
