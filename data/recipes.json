@@ -213,15 +213,16 @@
 				"Rice",
 				"Monterey jack cheese",
 				"Chicken stock",
-				"Yellow onion"
+				"Yellow onion",
+				"Salsa"
 		],
 		"tags": ["Veg"],
 		"source": ""
 	},
 	{
-		"name": "Crab pasta",
+		"name": "Scallop pasta",
 		"ingredients": [
-				"Crab meat",
+				"Bay scallops",
 				"Spaghetti",
 				"Peas",
 				"Heavy cream",
@@ -240,7 +241,9 @@
 				"Vegetable stock",
 				"Shallot",
 				"Heavy cream",
-				"Asparagus"
+				"Asparagus",
+				"Butter",
+				"Bread bowls"
 		],
 		"tags": [
 				"Veg"
