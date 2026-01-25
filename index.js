@@ -39,10 +39,13 @@ app.post('/shopping-list', (req, res) => {
   const recipes = JSON.parse(getData());
   const ingredientMap = new Map();
   const selectedMeals = [];
+  const mealIngredients = {}; // map meal name -> array of its raw ingredients
 
   recipes.forEach(({ name, ingredients }) => {
     if (selectedRecipes.includes(name)) {
       selectedMeals.push(name); // Collect selected meal names
+      // keep raw ingredients per-meal for UI grouping
+      mealIngredients[name] = Array.isArray(ingredients) ? [...ingredients] : [];
       ingredients.forEach((raw) => {
         const match = raw.match(/^(.*?)(?:\s*x(\d+))?$/i);
         const item = match[1].trim().toLowerCase();
@@ -63,7 +66,8 @@ app.post('/shopping-list', (req, res) => {
 
   res.json({
     selectedMeals: selectedMeals.sort(), // Alphabetical list of meals
-    shoppingList: sortedList
+    shoppingList: sortedList,
+    mealIngredients
   });
 });
 

@@ -10,6 +10,10 @@
       box-sizing: border-box;
     }
 
+  /* nested meal → ingredients list styling */
+  .meal-item { margin-bottom: 0.5em; }
+  .meal-item-title { font-weight: bold; }
+  .meal-item ul { margin: 0.25em 0 0 1em; padding-left: 1em; }
     body {
       font-family: Arial, sans-serif;
       display: grid;
@@ -79,6 +83,12 @@
     height: 6px;
     margin-top: 0.5em;
     appearance: none;
+  }
+
+
+  .shopping-list-column {
+    padding-bottom: 80px;
+    overflow-y: auto;
   }
 
 
@@ -191,17 +201,8 @@
     }
 
     function listCachedMeals(meals){
-      if(!Array.isArray(meals)){
-        return;
-      }
-
-      const list = getMealsList();
-
-      meals.forEach(meal => {
-        let listItem = document.createElement("LI");
-        listItem.textContent = meal;
-        list.appendChild(listItem);
-      });
+      // deprecated: replaced by renderMealPlan() after fetching mealIngredients
+      return;
     }
 
     function listCachedIngredients(ings){
@@ -215,6 +216,36 @@
         let listItem = document.createElement("LI");
         listItem.textContent = i;
         list.appendChild(listItem);
+      });
+    }
+
+    function renderMealPlan(mealNames, mealIngredients){
+      const mealsEl = getMealsList();
+      mealsEl.innerHTML = '';
+
+      if(!Array.isArray(mealNames) || !mealIngredients){
+        return;
+      }
+
+      mealNames.forEach(meal => {
+        const li = document.createElement('li');
+        li.className = 'meal-item';
+
+        const title = document.createElement('span');
+        title.className = 'meal-item-title';
+        title.textContent = meal;
+        li.appendChild(title);
+
+        const ul = document.createElement('ul');
+        const items = Array.isArray(mealIngredients[meal]) ? mealIngredients[meal] : [];
+        items.forEach(raw => {
+          const ingLi = document.createElement('li');
+          ingLi.textContent = raw;
+          ul.appendChild(ingLi);
+        });
+
+        li.appendChild(ul);
+        mealsEl.appendChild(li);
       });
     }
 
@@ -251,13 +282,8 @@
 
       localStorage.setItem("shoppingList", JSON.stringify(data.shoppingList));
 
-      const meals = document.getElementById('meal-list');
-      meals.innerHTML = '';
-      data.selectedMeals.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        meals.appendChild(li);
-      });
+      // render nested meal → ingredients
+      renderMealPlan(data.selectedMeals, data.mealIngredients);
 
       // Re-enable the button after processing
       button.disabled = false;
@@ -272,8 +298,33 @@
         showResumeDialog();
       }
       checkCachedMeals(cachedMeals);
-      listCachedMeals(cachedMeals);
-      listCachedIngredients(cachedShoppingList);
+      // If we have cached meals, fetch mealIngredients to render nested lists
+      if(Array.isArray(cachedMeals) && cachedMeals.length){
+        fetch('/shopping-list', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ selectedRecipes: cachedMeals })
+        })
+        .then(r => r.json())
+        .then(data => {
+          renderMealPlan(data.selectedMeals, data.mealIngredients);
+          // Use cached shopping list if present, otherwise render from response
+          const list = getIngList();
+          list.innerHTML = '';
+          const items = Array.isArray(cachedShoppingList) ? cachedShoppingList : data.shoppingList;
+          items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            list.appendChild(li);
+          });
+        })
+        .catch(() => {
+          // Fallback: just list cached shopping list if fetch fails
+          listCachedIngredients(cachedShoppingList);
+        });
+      } else {
+        listCachedIngredients(cachedShoppingList);
+      }
     });
 
     document.getElementById("closeDialogBtn").addEventListener("click", () => {
