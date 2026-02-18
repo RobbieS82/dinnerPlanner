@@ -253,14 +253,14 @@
 	{
 		"name": "Enchiladas Verde",
 		"ingredients": [
-				"Chicken thighs",
 				"Corn tortilla",
 				"Pepper jack cheese",
 				"Queso cheese",
 				"Verde sauce",
 				"sour cream",
 				"Yellow onion",
-				"Jalepeno"
+				"Poblano pepper",
+				"Red bell pepper"
 		],
 		"tags": [],
 		"source": ""
@@ -290,7 +290,7 @@
 				"cilantro",
 				"Rachero sauce",
 				"Limes",
-				"Leaf lettuce"
+				"Tri-color cabbage"
 		],
 		"tags": [
 			"P"
@@ -304,7 +304,9 @@
 				"Beef broth",
 				"Gruyere",
 				"Croutons",
-				"Crusty bread"
+				"Red wine vinegar",
+				"Thyme",
+				"Worcheshire sauce"
 		],
 		"tags": [],
 		"source": ""
@@ -313,12 +315,12 @@
 		"name": "Fried rice",
 		"ingredients": [
 				"Rice",
-				"Scallions",
+				"Scallion",
 				"Yellow onion",
 				"Egg",
 				"Sesame oil",
-				"Beef ramen packet",
-				"kimchi",
+				"Fried rice seasoning blend",
+				"Kimchi",
 				"tofu",
 				"bread crumbs"
 		],
@@ -384,6 +386,19 @@
 				"Feta crumbles",
 				"Garlic powder",
 				"Spinach & Arugula mix"
+		],
+		"tags": [],
+		"source": ""
+	},
+	{
+		"name": "Rice bowl",
+		"ingredients": [
+				"Chicken thighs",
+				"Korean BBQ sauce",
+				"Scallion",
+				"Rice",
+				"Sesame oil",
+				"Kimchi"
 		],
 		"tags": [],
 		"source": ""
