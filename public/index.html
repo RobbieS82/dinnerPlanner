@@ -29,6 +29,7 @@
       padding: 10px;
       background-color: darkslategray;
       color: white;
+      overflow-y: auto;
     }
 
     #recipe-list {
@@ -91,6 +92,61 @@
     overflow-y: auto;
   }
 
+  .import-export {
+    margin-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 12px;
+  }
+
+  .import-export h2 {
+    font-size: 1em;
+    margin: 0 0 8px;
+  }
+
+  .import-export button {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .import-export button:hover {
+    background-color: #46b8da;
+  }
+
+  #importFile {
+    width: 100%;
+    margin-top: 6px;
+    font-size: 0.85em;
+    color: white;
+  }
+
+  #importStatus {
+    margin-top: 6px;
+    font-size: 0.85em;
+    min-height: 1.2em;
+  }
+
+  /* ── Responsive: single-column on small screens ── */
+  @media (max-width: 768px) {
+    body {
+      grid-template-columns: 1fr;
+      height: auto;
+      overflow: auto;
+    }
+
+    #recipe-list {
+      max-height: 40vh;
+    }
+
+    .shopping-list-column {
+      padding: 10px 10px 20px;
+    }
+  }
 
   </style>
 </head>
@@ -103,6 +159,14 @@
       <!-- add a link to the github repo -->
       <small><a href="https://github.com/RobbieS82/dinnerPlanner">DinnerPlanner by Simpl</a></small>
     </form>
+    <div class="import-export">
+      <h2>Recipes</h2>
+      <button type="button" id="exportBtn">⬇ Export Recipes (JSON)</button>
+      <label for="importFile" style="display:block; margin-top:10px;">⬆ Import Recipes (JSON):</label>
+      <input type="file" id="importFile" accept=".json" />
+      <button type="button" id="importBtn">Import</button>
+      <div id="importStatus"></div>
+    </div>
   </div>
 
   <div class="shopping-list-column">
@@ -329,6 +393,59 @@
 
     document.getElementById("closeDialogBtn").addEventListener("click", () => {
       getResumeModal().close();
+    });
+
+    // Export all recipes as a downloadable JSON file
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      window.location.href = '/recipes/export';
+    });
+
+    // Import recipes from a user-selected JSON file
+    document.getElementById("importBtn").addEventListener("click", async () => {
+      const fileInput = document.getElementById("importFile");
+      const statusEl = document.getElementById("importStatus");
+      const file = fileInput.files[0];
+
+      if (!file) {
+        statusEl.style.color = "#f0ad4e";
+        statusEl.textContent = "Please select a JSON file first.";
+        return;
+      }
+
+      statusEl.style.color = "white";
+      statusEl.textContent = "Importing…";
+
+      try {
+        const text = await file.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          statusEl.style.color = "#d9534f";
+          statusEl.textContent = "Error: file is not valid JSON.";
+          return;
+        }
+
+        const res = await fetch('/recipes/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          statusEl.style.color = "#5cb85c";
+          statusEl.textContent = `Imported ${result.imported} recipe(s). Reloading…`;
+          const RELOAD_DELAY_MS = 800;
+          setTimeout(() => location.reload(), RELOAD_DELAY_MS);
+        } else {
+          statusEl.style.color = "#d9534f";
+          statusEl.textContent = "Import failed: " + result.error;
+        }
+      } catch (err) {
+        statusEl.style.color = "#d9534f";
+        statusEl.textContent = "Error: " + err.message;
+      }
     });
   </script>
 </body>
