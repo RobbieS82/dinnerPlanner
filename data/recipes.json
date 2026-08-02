@@ -395,7 +395,7 @@
     "source": ""
   },
   {
-    "name": "Rice bowl",
+    "name": "Korean Rice bowl",
     "ingredients": [
       "Chicken thighs",
       "Korean BBQ sauce",
@@ -777,6 +777,26 @@
       "Pickled vegetables"
     ],
     "tags": [],
+    "source": ""
+  },
+  {
+    "name": "Pakistani lentil curry",
+    "ingredients": [
+      "Red lentils",
+      "Yellow onion",
+      "Garlic",
+      "Ginger powder",
+      "Coriander powder",
+      "Chili powder",
+      "Turmeric",
+      "Cilantro",
+      "2x 16oz diced tomatoes",
+      "Butter",
+      "Naan"
+    ],
+    "tags": [
+      "V", "Veg"
+    ],
     "source": ""
   }
 ]
