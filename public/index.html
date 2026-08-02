@@ -92,43 +92,25 @@
     overflow-y: auto;
   }
 
-  .import-export {
+  .recipe-management {
     margin-top: 16px;
     border-top: 1px solid rgba(255,255,255,0.3);
     padding-top: 12px;
   }
 
-  .import-export h2 {
+  .recipe-management h2 {
     font-size: 1em;
     margin: 0 0 8px;
   }
 
-  .import-export button {
-    background-color: #5bc0de;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
+  .recipe-management p {
+    margin: 0;
     font-size: 0.9em;
-    margin-top: 4px;
-    width: 100%;
+    line-height: 1.4;
   }
 
-  .import-export button:hover {
-    background-color: #46b8da;
-  }
-
-  #importFile {
-    width: 100%;
-    margin-top: 6px;
-    font-size: 0.85em;
-    color: white;
-  }
-
-  #importStatus {
-    margin-top: 6px;
-    font-size: 0.85em;
-    min-height: 1.2em;
+  .recipe-management code {
+    color: #b0c4de;
   }
 
   /* ── Responsive: single-column on small screens ── */
@@ -159,13 +141,9 @@
       <!-- add a link to the github repo -->
       <small><a href="https://github.com/RobbieS82/dinnerPlanner">DinnerPlanner by Simpl</a></small>
     </form>
-    <div class="import-export">
+    <div class="recipe-management">
       <h2>Recipes</h2>
-      <button type="button" id="exportBtn">⬇ Export Recipes (JSON)</button>
-      <label for="importFile" style="display:block; margin-top:10px;">⬆ Import Recipes (JSON):</label>
-      <input type="file" id="importFile" accept=".json" />
-      <button type="button" id="importBtn">Import</button>
-      <div id="importStatus"></div>
+      <p>Add, delete, or edit recipes by updating <code>data/recipes.json</code> and reloading the page.</p>
     </div>
   </div>
 
@@ -188,8 +166,6 @@
   </dialog>
 
   <script>
-    // All recipe data is managed in localStorage; no recipe data is ever sent to the server.
-
     let allRecipes = [];
 
     /**
@@ -232,21 +208,15 @@
     }
 
     /**
-     * Loads recipes from localStorage. On the very first visit (no cached data),
-     * fetches the default recipe list from the server (GET only – no data is sent
-     * from the client) and stores it in localStorage for all future visits.
+     * Loads recipes from the server-backed JSON file so edits to data/recipes.json
+     * are reflected on every page load.
      */
     async function loadRecipes() {
-      const stored = localStorage.getItem('recipes');
-      if (stored) {
-        allRecipes = JSON.parse(stored);
-      } else {
-        const res = await fetch('/recipes');
-        allRecipes = await res.json();
-        localStorage.setItem('recipes', JSON.stringify(allRecipes));
-      }
+      const res = await fetch('/recipes', { cache: 'no-store' });
+      allRecipes = await res.json();
 
       const container = getRecipeList();
+      container.innerHTML = '';
       allRecipes.forEach(recipe => {
         const label = document.createElement('label');
         label.innerHTML = `<input type="checkbox" value="${recipe.name}" /> ${recipe.name}`;
@@ -315,20 +285,6 @@
         if(chkbox){
           chkbox.checked=true
         };
-      });
-    }
-
-    function listCachedIngredients(ings){
-      if(!Array.isArray(ings)){
-        return;
-      }
-
-      const list = getIngList();
-
-      ings.forEach(i => {
-        let listItem = document.createElement("LI");
-        listItem.textContent = i;
-        list.appendChild(listItem);
       });
     }
 
@@ -402,25 +358,36 @@
     loadRecipes().then(() => {
       const cachedMeals = JSON.parse(localStorage.getItem("lastMealsSelected")) ?? null;
       const cachedShoppingList = JSON.parse(localStorage.getItem("shoppingList")) ?? null;
-      if(cachedMeals && cachedShoppingList){
+      const validRecipeNames = new Set(allRecipes.map(recipe => recipe.name));
+      const validCachedMeals = Array.isArray(cachedMeals)
+        ? cachedMeals.filter(meal => validRecipeNames.has(meal))
+        : null;
+
+      if (Array.isArray(validCachedMeals)) {
+        localStorage.setItem("lastMealsSelected", JSON.stringify(validCachedMeals));
+      }
+
+      if(validCachedMeals && validCachedMeals.length && cachedShoppingList){
         toggleAttentionGrabber("none");
         showResumeDialog();
       }
-      checkCachedMeals(cachedMeals);
-      // Restore the previous meal plan and shopping list entirely from localStorage
-      if(Array.isArray(cachedMeals) && cachedMeals.length){
-        const data = buildShoppingList(allRecipes, cachedMeals);
+      checkCachedMeals(validCachedMeals);
+      if(Array.isArray(validCachedMeals) && validCachedMeals.length){
+        const data = buildShoppingList(allRecipes, validCachedMeals);
         renderMealPlan(data.selectedMeals, data.mealIngredients);
         const list = getIngList();
         list.innerHTML = '';
-        const items = Array.isArray(cachedShoppingList) ? cachedShoppingList : data.shoppingList;
+        const items = data.shoppingList;
         items.forEach(item => {
           const li = document.createElement('li');
           li.textContent = item;
           list.appendChild(li);
         });
+        localStorage.setItem("shoppingList", JSON.stringify(data.shoppingList));
       } else {
-        listCachedIngredients(cachedShoppingList);
+        localStorage.removeItem("shoppingList");
+        getIngList().innerHTML = '';
+        renderMealPlan([], {});
       }
     });
 
@@ -428,89 +395,6 @@
       getResumeModal().close();
     });
 
-    // Export all recipes from localStorage as a downloadable JSON file
-    document.getElementById("exportBtn").addEventListener("click", () => {
-      const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
-      const json = JSON.stringify(recipes, null, 2);
-      const blob = new Blob([json], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'recipes.json';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-
-    // Import recipes from a user-selected JSON file into localStorage
-    document.getElementById("importBtn").addEventListener("click", async () => {
-      const fileInput = document.getElementById("importFile");
-      const statusEl = document.getElementById("importStatus");
-      const file = fileInput.files[0];
-
-      if (!file) {
-        statusEl.style.color = "#f0ad4e";
-        statusEl.textContent = "Please select a JSON file first.";
-        return;
-      }
-
-      statusEl.style.color = "white";
-      statusEl.textContent = "Importing…";
-
-      try {
-        const text = await file.text();
-        let imported;
-        try {
-          imported = JSON.parse(text);
-        } catch {
-          statusEl.style.color = "#d9534f";
-          statusEl.textContent = "Error: file is not valid JSON.";
-          return;
-        }
-
-        if (!Array.isArray(imported)) {
-          statusEl.style.color = "#d9534f";
-          statusEl.textContent = "Import failed: expected an array of recipes.";
-          return;
-        }
-
-        for (const recipe of imported) {
-          if (typeof recipe.name !== 'string' || !recipe.name.trim()) {
-            statusEl.style.color = "#d9534f";
-            statusEl.textContent = "Import failed: each recipe must have a non-empty name.";
-            return;
-          }
-          if (!Array.isArray(recipe.ingredients)) {
-            statusEl.style.color = "#d9534f";
-            statusEl.textContent = `Import failed: recipe "${recipe.name}" must have an ingredients array.`;
-            return;
-          }
-        }
-
-        // Normalise imported entries so all have the expected fields
-        const normalised = imported.map(r => ({
-          name: r.name.trim(),
-          ingredients: r.ingredients,
-          tags: Array.isArray(r.tags) ? r.tags : [],
-          source: typeof r.source === 'string' ? r.source : ''
-        }));
-
-        // Merge into localStorage: existing recipes updated or new ones added, keyed by name
-        const existing = JSON.parse(localStorage.getItem('recipes')) || [];
-        const recipeMap = new Map(existing.map(r => [r.name, r]));
-        normalised.forEach(r => recipeMap.set(r.name, r));
-        localStorage.setItem('recipes', JSON.stringify(Array.from(recipeMap.values())));
-
-        statusEl.style.color = "#5cb85c";
-        statusEl.textContent = `Imported ${imported.length} recipe(s). Reloading…`;
-        const RELOAD_DELAY_MS = 800;
-        setTimeout(() => location.reload(), RELOAD_DELAY_MS);
-      } catch (err) {
-        statusEl.style.color = "#d9534f";
-        statusEl.textContent = "Error: " + err.message;
-      }
-    });
   </script>
 </body>
 </html>
