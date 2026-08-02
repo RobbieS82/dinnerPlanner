@@ -213,6 +213,9 @@
      */
     async function loadRecipes() {
       const res = await fetch('/recipes', { cache: 'no-store' });
+      if (!res.ok) {
+        throw new Error('Unable to load recipes.');
+      }
       allRecipes = await res.json();
 
       const container = getRecipeList();
