@@ -1,10 +1,10 @@
 # 🥘 Dinner Planner
 
-Dinner Planner is a lightweight Node.js web app that helps you convert recipe data from a CSV file into an aggregated shopping list. Select your meals, click a button, and voilà—your shopping list is sorted, deduplicated, and ready to go.
+Dinner Planner is a lightweight Node.js web app that helps you turn recipe data from a JSON file into an aggregated shopping list. Select your meals, click a button, and voilà—your shopping list is sorted, deduplicated, and ready to go.
 
 ## 📁 Features
 
-- Read recipes from `./data/recipes.csv`
+- Read recipes from `./data/recipes.json`
 - Interactive front-end with recipe checkboxes
 - Aggregate ingredients from selected recipes
 - Deduplicated and alphabetically sorted shopping list
@@ -42,10 +42,22 @@ node index.js
 
 The app will run, and you only have to open this link to view and use it: http://localhost:3000 
 
-## Adding recipes
+## Managing recipes
 
-To add meal plans, you only have to edit the CSV file found in ./data/recipes.csv. The first 
-column is the nickname of the meal, and all other columns are the ingredients to add to the shopping list.
+To add, delete, or modify meal plans, edit `./data/recipes.json`.
+
+Each recipe should use this structure:
+
+```json
+{
+  "name": "Recipe name",
+  "ingredients": ["Ingredient 1", "Ingredient 2"],
+  "tags": ["Optional tag"],
+  "source": "Optional URL or note"
+}
+```
+
+The app reloads `/recipes` from disk on each page load, so saving changes to `./data/recipes.json` is enough for them to appear in the UI after a refresh.
 
 ### Ingredient quantities
 If you need to specify an ingredient quantity, e.g. "six yellow onions", write it as "Yellow onion x6".  

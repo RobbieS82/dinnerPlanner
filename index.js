@@ -6,12 +6,18 @@ const app = express();
 const PORT = 3000;
 app.use(express.static('public'));
 
-// Recipes loaded from disk once at startup; served to the client for first-visit bootstrapping
-const recipes = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'recipes.json'), 'utf8'));
+function readRecipes() {
+  const recipesPath = path.join(__dirname, 'data', 'recipes.json');
+  return JSON.parse(fs.readFileSync(recipesPath, 'utf8'));
+}
 
-// Returns the recipe data for client-side bootstrapping on first visit
+// Returns the latest recipe data from disk so JSON edits are reflected without restarting the server
 app.get('/recipes', (req, res) => {
-  res.json(recipes);
+  try {
+    res.json(readRecipes());
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to load recipes.' });
+  }
 });
 
 app.listen(PORT, () => {
